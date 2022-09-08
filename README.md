@@ -6,7 +6,25 @@ Package bcrypt implements Provos and Mazières's bcrypt adaptive hashing
 algorithm. See http://www.usenix.org/event/usenix99/provos/provos.pdf
 
 ## Usage
+### Example
+```go
+var password = "pass123"
+var salt = "faf6132ae848fkjf" // 16 byte!
 
+passHash, err := GenerateFromPasswordAndSalt([]byte(password), cost, []byte(salt))
+if err != nil {
+	log.Fatalf(
+		"Error when generating hash for password %s with salst %s, cost=%d: %v"
+	    password, salt, cost, err,
+	)
+}
+
+if err := CompareHashAndPassword(passHash, []byte(password)); err != nil {
+	log.Fatalf("can't compare hash %s ans password %s: %v", string(passHash), password, err)
+}
+```
+
+### Constants
 ```go
 const (
 	MinCost     int = 4  // the minimum allowable cost as passed in to GenerateFromPassword
@@ -15,6 +33,7 @@ const (
 )
 ```
 
+### Globals (errors)
 ```go
 var ErrHashTooShort = errors.New("crypto/bcrypt: hashedSecret too short to be a bcrypted password")
 ```
@@ -26,6 +45,8 @@ var ErrMismatchedHashAndPassword = errors.New("crypto/bcrypt: hashedPassword is 
 ```
 ErrMismatchedHashAndPassword is the error returned from CompareHashAndPassword
 when a password and hash do not match.
+
+### Functions
 
 #### func  CompareHashAndPassword
 

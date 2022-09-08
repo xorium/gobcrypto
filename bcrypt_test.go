@@ -274,5 +274,4 @@ func TestGeneratingAndValidation(t *testing.T) {
 			string(passHash), password, err,
 		)
 	}
-	println(string(passHash), cost, salt, password)
 }
