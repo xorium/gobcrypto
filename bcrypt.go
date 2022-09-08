@@ -139,6 +139,8 @@ func Cost(hashedPassword []byte) (int, error) {
 	return p.cost, nil
 }
 
+// GenerateFromPasswordAndSalt lets generate hash from password, cost (number of
+// rounds) and 16 bytes of a salt.
 func GenerateFromPasswordAndSalt(password []byte, cost int, salt []byte) ([]byte, error) {
 	p, err := newFromPasswordAndSalt(password, cost, salt)
 	if err != nil {
