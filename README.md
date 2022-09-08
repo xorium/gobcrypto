@@ -1,6 +1,5 @@
 # bcrypt
 --
-    import "."
 
 Package bcrypt implements Provos and Mazières's bcrypt adaptive hashing
 algorithm. See http://www.usenix.org/event/usenix99/provos/provos.pdf
